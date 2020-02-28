@@ -3,74 +3,51 @@ import com.googlecode.lanterna.terminal.ansi.*;
 
 public class LineDrawing06
 {
-	public static void main(String[] args) throws java.io.IOException {
+	public static void main(String []args) throws java.io.IOException {
 		Terminal terminal = new DefaultTerminalFactory().createTerminal();
-		int num;
 		int length = 1;
+		int num;
+		char[] msg = {'M','e','r','r','y'};
+		char[] msg2 = {'C','h','i','s','t','m','a','s'};
 		terminal.enterPrivateMode();
 		for(int i=1;i<=20;i=i+2){
-			num=(length/2)+(length%2);
+			num = (length/2)+(length%2);
 			for(int j=1;j<=length;j=j+1){
 				terminal.setCursorPosition(11-j,i);
 				if(11-j <= 10-length+num){
 					terminal.putCharacter('X');
-				}
-				else{
-				terminal.putCharacter('Y');
+				}else{
+					terminal.putCharacter('Y');
 				}
 			}
 			for(int j=1;j<=length;j=j+1){
 				terminal.setCursorPosition(9+j,i);
 				if(11-j <= 10-length+num){
 					terminal.putCharacter('X');
+				}else{
+					terminal.putCharacter('Y');
 				}
-				else{
-				terminal.putCharacter('Y');
+			} 
+			if(i <= 17){
+				terminal.setCursorPosition(10,i+1);
+				terminal.putCharacter('|');		
+				terminal.setCursorPosition(10-length,i+1);
+				terminal.putCharacter('/');
+				terminal.setCursorPosition(10+length,i+1);
+				terminal.putCharacter('\\');
+				if(length-1 <= 4){
+					terminal.setCursorPosition(23+length,10);
+					terminal.putCharacter(msg[length-1]);
+				}
+				if(length-1 <= 7){
+					terminal.setCursorPosition(27+length,11);
+					terminal.putCharacter(msg2[length-1]);
 				}
 			}
-			terminal.setCursorPosition(10-length,i+1);
-			terminal.putCharacter('/');
-			terminal.setCursorPosition(10+length,i+1);
-			terminal.putCharacter('\\');
-			terminal.setCursorPosition(10,i+1);
-			terminal.putCharacter('|');
-			terminal.setCursorPosition(25,11);
-			terminal.putCharacter('M');
-			terminal.setCursorPosition(26,11);
-			terminal.putCharacter('e');
-			terminal.setCursorPosition(27,11);
-			terminal.putCharacter('r');
-			terminal.setCursorPosition(28,11);
-			terminal.putCharacter('r');
-			terminal.setCursorPosition(29,11);
-			terminal.putCharacter('y');
-			terminal.setCursorPosition(23,12);
-			terminal.putCharacter('C');
-			terminal.setCursorPosition(24,12);
-			terminal.putCharacter('h');
-			terminal.setCursorPosition(25,12);
-			terminal.putCharacter('r');
-			terminal.setCursorPosition(26,12);
-			terminal.putCharacter('i');
-			terminal.setCursorPosition(27,12);
-			terminal.putCharacter('s');
-			terminal.setCursorPosition(28,12);
-			terminal.putCharacter('t');
-			terminal.setCursorPosition(29,12);
-			terminal.putCharacter('m');
-			terminal.setCursorPosition(30,12);
-			terminal.putCharacter('a');
-			terminal.setCursorPosition(31,12);
-			terminal.putCharacter('s');
-			terminal.setCursorPosition(32,12);
-			terminal.putCharacter('!');
-
-			
 			length++;
 		}
 		terminal.flush();
 		terminal.readInput();
 		terminal.exitPrivateMode();
-
 	}
 }
